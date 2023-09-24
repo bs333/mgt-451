@@ -4,8 +4,18 @@ The following repository holds all the code, assignments, and notes for the cour
 
 ### Course Description
 
-This course is designed for Master's and Ph.D. graduate students as well as advanced undergraduates. The purpose is to learn applied statistical methodologies pertaining to time series (i.e., a discrete series of observations related to time).
+In this course, we review computational models of thought and behavior from across the behavioral and social sciences, including economics, psychology, evolutionary biology, network science, information systems, and sociology. 
 
-In this course, the students will learn how to estimate financial data models and predict using time series models. The course will cover linear time series (ARIMA) models, conditional heteroscedastic models (ARCH type models), non-linear models (TAR, STAR, MSA), non-parametric models (kernel regression, local regression, neural networks), nonparametric methods of evaluating fit such as bootstrap, parametric bootstrap, and cross-validation. The course will also introduce multivariate time series models such as VAR.
+The course begins by studying individual thought and behavior, from predicting the future to taking risks. The course proceeds to study group thought and behavior, from social influence to the design of voting mechanisms. Each class covers a new topic in the study of thought and behavior and introduces the range of empirical and theoretical computational approaches to studying that topic.
+
+### Student Learning Outcomes
+
+The course aims to provide students with broad exposure to computational modeling in the behavioral and social sciences. Having taken the course, students will have a toolbox of data structures and algorithms that they can use when reasoning about the thought and behaviors of individuals and groups.
+
+After successful completion of this course:
+- Students will be able to model a broad range of thoughts and behaviors.
+- Students will be able to model both individuals and groups.
+- Students will have an integrated view of the behavioral and social sciences.
+- Students will be certified in and capable of replicating behavioral and social-science experiments.
 
 Please refer for the Syllabus for further information.
