@@ -111,6 +111,38 @@ def ucb(numTrials, p1, p2):
 
     return totalReward
 
+def thompson_sampling(numTrials, p1, p2):
+    """
+    Thompson Sampling strategy for multi-armed bandit problem.
+    
+    Uses Bayesian posterior distributions of rewards to probabilistically choose an action.
+    
+    Args:
+    - numTrials (int): Number of times the bandit is played.
+    - p1 (float): Probability of reward for action 1.
+    - p2 (float): Probability of reward for action 2.
+    
+    Returns:
+    - int: Total reward obtained over numTrials.
+    """
+    alphas = [1, 1]  # Number of successes + 1 for each action
+    betas = [1, 1]  # Number of failures + 1 for each action
+    totalReward = 0  # Total rewards accumulated
+
+    for _ in range(numTrials):
+        sampled_rewards = [beta_sample(alphas[j], betas[j]) for j in range(2)]  # Sample reward for each action
+        choice = sampled_rewards.index(max(sampled_rewards))  # Choose action with max sampled reward
+        reward = random.random() < (p1 if choice else p2)  # Simulate getting reward
+        
+        # Update successes and failures for chosen action
+        if reward:
+            alphas[choice] += 1
+        else:
+            betas[choice] += 1
+        totalReward += reward
+
+    return totalReward
+
 
 numTrials = 10
 p1 = 0.25
