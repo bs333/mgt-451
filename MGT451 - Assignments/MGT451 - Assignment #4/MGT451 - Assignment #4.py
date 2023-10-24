@@ -143,43 +143,13 @@ def thompson_sampling(numTrials, p1, p2):
 
     return totalReward
 
-
-numTrials = 10
+# Example usage
+numTrials = 1000
 p1 = 0.25
 p2 = 0.75
+epsilon = 0.1
 
-totalReward = 0
-history = []
-for i in range(numTrials):
-    choice = f(history)
-    if choice:
-        reward = random.random() < p1
-    else:
-        reward = random.random() < p2
+print("Epsilon Greedy Reward:", epsilon_greedy(numTrials, p1, p2, epsilon))
+print("UCB Reward:", ucb(numTrials, p1, p2))
+print("Thompson Sampling Reward:", thompson_sampling(numTrials, p1, p2))
 
-    print("Trial {}: {}, {}".format(i, choice, reward))
-
-    totalReward += reward
-    history.append((choice, reward))
-
-
-def epsilon_greedy(numTrials, p1, p2, epsilon):
-    """
-    Function that implements the epsilon
-    """
-    estimated_rewards = [0, 0]
-    counts = [0, 0]
-    totalReward = 0
-
-    for i in range(numTrials):
-        if random.random() < epsilon:
-            choice = random.choice([0, 1])
-        else:
-            choice = estimated_rewards.index(max(estimated_rewards))
-        
-        reward = random.random() < (p1 if choice else p2)
-        counts[choice] += 1
-        estimated_rewards[choice] = ((estimated_rewards[choice] * (counts[choice]-1)) + reward) / counts[choice]
-        totalReward += reward
-    
-    return totalReward
