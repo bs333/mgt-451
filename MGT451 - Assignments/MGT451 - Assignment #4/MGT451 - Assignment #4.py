@@ -91,14 +91,14 @@ def ucb(numTrials, p1, p2):
     Returns:
     - int: Total reward obtained over numTrials.
     """
-    estimated_rewards = [0, 0]  # Track estimated rewards for each action
-    counts = [0, 1]  # Initialize with 1 to avoid division by zero later
+    estimated_rewards = [0.5, 0.5]  # Track estimated rewards for each action
+    counts = [1, 1]  # Initialize with 1 to avoid division by zero later
     totalReward = 0  # Total rewards accumulated
 
     for i in range(numTrials):
         # Calculate UCB value for each action
         ucb_values = [
-            estimated_rewards[j] + math.sqrt(2 * math.log(i+1) / counts[j])
+            estimated_rewards[j] + math.sqrt(2 * math.log(i+2) / counts[j])
             for j in range(2)
         ]
         
