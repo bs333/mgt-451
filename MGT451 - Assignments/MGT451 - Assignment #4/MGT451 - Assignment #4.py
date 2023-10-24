@@ -77,6 +77,41 @@ def epsilon_greedy(numTrials, p1, p2, epsilon):
     
     return totalReward
 
+def ucb(numTrials, p1, p2):
+    """
+    Upper Confidence Bound (UCB) strategy for multi-armed bandit problem.
+    
+    Balances between exploration and exploitation based on uncertainty in reward estimate of an action.
+    
+    Args:
+    - numTrials (int): Number of times the bandit is played.
+    - p1 (float): Probability of reward for action 1.
+    - p2 (float): Probability of reward for action 2.
+    
+    Returns:
+    - int: Total reward obtained over numTrials.
+    """
+    estimated_rewards = [0, 0]  # Track estimated rewards for each action
+    counts = [0, 1]  # Initialize with 1 to avoid division by zero later
+    totalReward = 0  # Total rewards accumulated
+
+    for i in range(numTrials):
+        # Calculate UCB value for each action
+        ucb_values = [
+            estimated_rewards[j] + math.sqrt(2 * math.log(i+1) / counts[j])
+            for j in range(2)
+        ]
+        
+        choice = ucb_values.index(max(ucb_values))  # Choose action with max UCB value
+        reward = random.random() < (p1 if choice else p2)  # Simulate getting reward
+        counts[choice] += 1
+        # Update estimated reward for chosen action
+        estimated_rewards[choice] = ((estimated_rewards[choice] * (counts[choice]-1)) + reward) / counts[choice]
+        totalReward += reward
+
+    return totalReward
+
+
 numTrials = 10
 p1 = 0.25
 p2 = 0.75
