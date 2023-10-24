@@ -21,10 +21,23 @@ import math
 
 
 def gamma(shape):
-    """
-    Generate a random sample from the gamma distribution using the provided shape.
-    """
-    return -math.log(math.prod(random.random() for _ in range(shape)))
+    """Generate a random sample from the gamma distribution for integer shape parameters."""
+    if shape < 1:
+        raise ValueError("Shape parameter must be an integer greater than or equal to 1.")
+    
+    # For shape = 1, the gamma distribution simplifies to the exponential distribution
+    if shape == 1:
+        return -math.log(1.0 - random.random())
+
+    # Acceptance-rejection method
+    while True:
+        x = 1.0
+        for _ in range(shape):
+            x *= random.random()
+        y = (1.0 - random.random()) ** (shape - 1)
+        if x > y:
+            return -math.log(x)
+
 
 def beta(alpha, beta):
     """
