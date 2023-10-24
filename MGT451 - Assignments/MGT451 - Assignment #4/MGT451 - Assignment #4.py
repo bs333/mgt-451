@@ -130,7 +130,7 @@ def thompson_sampling(numTrials, p1, p2):
     totalReward = 0  # Total rewards accumulated
 
     for _ in range(numTrials):
-        sampled_rewards = [beta_sample(alphas[j], betas[j]) for j in range(2)]  # Sample reward for each action
+        sampled_rewards = [beta(alphas[j], betas[j]) for j in range(2)]  # Sample reward for each action
         choice = sampled_rewards.index(max(sampled_rewards))  # Choose action with max sampled reward
         reward = random.random() < (p1 if choice else p2)  # Simulate getting reward
         
