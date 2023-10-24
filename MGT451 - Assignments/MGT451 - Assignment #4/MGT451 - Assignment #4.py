@@ -38,7 +38,6 @@ def gamma(shape):
         if x > y:
             return -math.log(x)
 
-
 def beta(alpha, beta):
     """
     Generate a random sample from the beta distribution using the given alpha and beta values.
